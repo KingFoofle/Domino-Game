@@ -24,6 +24,8 @@ public class DominoTable {
 		
 		this.NUMBER_OF_PLAYERS = numPlayers;
 		this.players = new Player[numPlayers];
+		
+		this.spreadDominoes();
 	}
 	
 	// Getters
@@ -66,6 +68,16 @@ public class DominoTable {
 		this.getDominoesOnTable().add(d);
 	}
 	
+	public boolean takeTurns() {
+		int oldLen = dominoesOnTable.size();
+		for (int i = 0; i < players.length; i++) {
+			this.dominoesOnTable = players[i].makeMove(this.dominoesOnTable);
+		}
+		
+		return dominoesOnTable.size() == oldLen;
+		
+	}
+	
 	// Reset the Table and all its hands
 	public void reset() {
 		this.dominoes = createDeck();
@@ -84,6 +96,9 @@ public class DominoTable {
 	}
 	
 	public boolean movesLeft() {
+		
+		// TODO: Add more checking options.
+		// For example: If no players can move, end the game
 		
 		List<Domino> dominoes = this.getDominoesOnTable();
 		if (this.dominoes.size() == 28) {return false;}
