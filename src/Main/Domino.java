@@ -44,12 +44,14 @@ public class Domino {
 	
 	// Constructor 1: Fresh domino
 	public Domino(int left, int right) {
-		// TODO: Finish the constructor!
+		this.LEFT_VALUE = left;
+		this.RIGHT_VALUE = right;
 	}
 	
 	// Constructor 2: Creating a domino using another domino
 	public Domino(Domino otherDomino) {
-		// TODO: Finish the constructor
+		this.LEFT_VALUE = otherDomino.get_LEFT_VALUE();
+		this.RIGHT_VALUE = otherDomino.get_RIGHT_VALUE();
 	}
 
 	
@@ -81,22 +83,25 @@ public class Domino {
 	
 	public boolean isDouble() {
 		// TODO: Complete this method!
-			return false; // Dummy return, delete this
+			return this.get_LEFT_VALUE() == this.get_RIGHT_VALUE();
 		}
 	
 	// Non-Static Method Invert
 	public void invert() {
 		// TODO: Complete this method!
+		int otherNumber = this.get_LEFT_VALUE();
+		this.LEFT_VALUE = this.get_RIGHT_VALUE();
+		this.RIGHT_VALUE = otherNumber;
 	}
 	
 	// Static Method Invert
 	public static Domino invert(Domino d) {
 		// TODO: Complete this method!
-		return null; // Dummy Return
+		return new Domino(d.RIGHT_VALUE, d.LEFT_VALUE);
 	}
 
 	@Override
-	public String toString() {return this.get_LEFT_VALUE() + " | " + this.get_RIGHT_VALUE();}
+	public String toString() {return "[" + this.get_LEFT_VALUE() + " | " + this.get_RIGHT_VALUE() + "]";}
 	
 	@Override
 	public boolean equals(Object obj) {
@@ -107,7 +112,8 @@ public class Domino {
 			return false;
 		}
 		Domino other = (Domino) obj;
-		return LEFT_VALUE == other.LEFT_VALUE && RIGHT_VALUE == other.RIGHT_VALUE;
+		return (LEFT_VALUE == other.LEFT_VALUE && RIGHT_VALUE == other.RIGHT_VALUE) 
+				|| (LEFT_VALUE == other.RIGHT_VALUE && RIGHT_VALUE == other.LEFT_VALUE);
 	}
 
 	@Override

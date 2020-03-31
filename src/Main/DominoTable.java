@@ -18,42 +18,44 @@ public class DominoTable {
 	
 	
 	public DominoTable(int numPlayers) {
+		
+		// If the range of the number of players is invalid, set it to 2 players
+		if (numPlayers > 4 || numPlayers < 1) {numPlayers = 2;}
+		
 		this.NUMBER_OF_PLAYERS = numPlayers;
 		this.players = new Player[numPlayers];
 	}
 	
-	
+	// Getters
 	public List<Domino> getDominoes() {return dominoes;}
 	public List<Domino> getDominoesOnTable() {return dominoesOnTable;}
 	public Player[] getPlayers() {return players;}
 	public List<Domino> getFreeHand() {return freeHand;}
+
 	
-	private List<Domino> createDeck(){
-		List<Domino> deckToReturn = new ArrayList<Domino>();
-		for (int i = 0; i < 7; i++) { // [0,6]
-			for (int k = i; k < 7; k++) { // [0,6]
-				deckToReturn.add(new Domino(i,k));
-			}
-		}
-		return DominoTable.shuffle(deckToReturn);
-	}
 	
+	// Works
 	public void spreadDominoes() {
-		this.dominoes = createDeck();
+		// Only spread if the table is new
+		if (this.getDominoes().size() != 28) {reset();}
 		for (int i = 0; i < NUMBER_OF_PLAYERS; i++) {
 			Player player = new Player();
 			
 			for (int k = 0; k < 7; k++) {
-				Domino domino = this.getDominoes().get(this.getDominoes().size() - 1);
+				Domino domino = this.getDominoes().remove(this.getDominoes().size()- 1);
 				player.getHand().add(domino);
-				this.getDominoes().remove(domino);
+
 			}
 			this.getPlayers()[i] = player;
 		}
-		
+
 		this.freeHand = this.getDominoes();
+		this.dominoes = new ArrayList<Domino>();
 	}
 	
+	
+	// TODO: Make method that gives takes a player param, and gives the player the table so that THEIR method determines
+	// if they have a play or not
 	
 
 	public void addToFront(Domino d) {
@@ -62,6 +64,14 @@ public class DominoTable {
 	
 	public void addToEnd(Domino d) {
 		this.getDominoesOnTable().add(d);
+	}
+	
+	// Reset the Table and all its hands
+	public void reset() {
+		this.dominoes = createDeck();
+		this.players = new Player[NUMBER_OF_PLAYERS];
+		this.dominoesOnTable = new ArrayList<Domino>(); 
+		this.freeHand = new ArrayList<Domino>();
 	}
 	
 	public boolean gameIsValid() {
@@ -95,14 +105,24 @@ public class DominoTable {
 		return true;
 	}
 	
+	private List<Domino> createDeck(){
+		List<Domino> deckToReturn = new ArrayList<Domino>();
+		for (int i = 0; i < 7; i++) { // [0,6]
+			for (int k = i; k < 7; k++) { // [0,6]
+				deckToReturn.add(new Domino(i,k));
+			}
+		}
+		return DominoTable.shuffle(deckToReturn);
+	}
+	
 	
 	private static List<Domino> shuffle(List<Domino> d){
 		
 		List<Domino> toReturn = new ArrayList<Domino>();
 		int size = d.size();
-		
 		for (int i = 0; i < size; i++) {
-			toReturn.add(d.get(random.nextInt(d.size())));
+			Domino e = d.remove(random.nextInt(d.size()));
+			toReturn.add(e);
 		}
 		
 		return toReturn;

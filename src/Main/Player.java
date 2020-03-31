@@ -10,4 +10,6 @@ public class Player {
 	
 	public List<Domino> getHand() {return this.hand;}
 	
+	// TODO: Make a method that determines if the player can make a move given the table parameter
+	
 }
