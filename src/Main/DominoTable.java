@@ -72,9 +72,16 @@ public class DominoTable {
 		int oldLen = dominoesOnTable.size();
 		for (int i = 0; i < players.length; i++) {
 			this.dominoesOnTable = players[i].makeMove(this.dominoesOnTable);
+			
+			// If player did not move
+			if ((dominoesOnTable.size() == oldLen) && (freeHand.size() > 1)) {
+				players[i].getHand().add(freeHand.get(random.nextInt(freeHand.size())));
+			}
+			
 		}
 		
-		return dominoesOnTable.size() == oldLen;
+		// Nobody moved
+		return (dominoesOnTable.size() == oldLen) && freeHand.size() == 0;
 		
 	}
 	
