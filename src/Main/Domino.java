@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Domino {
 	
-	// Secret Password: 
+	// Secret Password:
 
 	
 	// Instance Variables!
