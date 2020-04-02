@@ -1,6 +1,7 @@
 package Main;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -8,7 +9,7 @@ import javax.imageio.ImageIO;
 public class Images {
 	public static BufferedImage dominoSheet;
 	public static BufferedImage one, two, three, four, five, six;
-	public static BufferedImage twoTilt, threeTilt, sixTilt, back;	
+	public static BufferedImage twoTilt, threeTilt, sixTilt, zero;	
 
 
 	public BufferedImage crop(BufferedImage image, int x, int y, int width, int height){
@@ -17,7 +18,8 @@ public class Images {
 	
 	public Images() {
         try {
-			dominoSheet = ImageIO.read(getClass().getResourceAsStream("/dominoes.png"));
+        	
+        	dominoSheet = ImageIO.read(getClass().getResourceAsStream("/dominoes.png"));
 			
 			one = crop(dominoSheet,0,0,35,35);
 			two = crop(dominoSheet,36,0,35,35);
@@ -28,7 +30,7 @@ public class Images {
 			twoTilt = crop(dominoSheet,108,0,35,35);
 			threeTilt = crop(dominoSheet,108,36,35,35);
 			sixTilt = crop(dominoSheet,144,0,35,35);
-			back = crop(dominoSheet,144,36,35,35);
+			zero = crop(dominoSheet,144,36,35,35);
 		} 
         
         catch (IOException e) {e.printStackTrace();}
