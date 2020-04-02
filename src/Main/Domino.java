@@ -58,12 +58,12 @@ public class Domino {
 	
 	// Constructor 1: Fresh domino
 	public Domino(int left, int right) {
-
+		// TODO: Finish the Constructor!
 	}
 	
 	// Constructor 2: Creating a domino using another domino
 	public Domino(Domino otherDomino) {
-
+		// TODO: Finish the Constructor!
 	}
 
 	
@@ -162,16 +162,18 @@ public class Domino {
 	
 	
 	public boolean isDouble() {
+		// TODO: Finish this method!
 		return false;
 	}
 	
 	// Non-Static Method Invert
 	public void invert() {
-
+		// TODO: Finish this method!
 	}
 	
 	// Static Method Invert
 	public static Domino invert(Domino d) {
+		// TODO: Finish this method!
 		return null;
 	}
 
