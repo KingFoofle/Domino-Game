@@ -18,13 +18,17 @@ public class Launch {
 		
 		frame.add(myCanvas);
 		
-		frame.setVisible(false);
+		frame.setVisible(true);
 		DominoTable test = new DominoTable(4);
 		
-		while (true) {
-			frame.repaint();
-			Thread.sleep(100);
-		}
+		Images img = new Images();
+		
+//		while (true) {
+//			frame.repaint();
+//			Thread.sleep(100);
+//		}
+		
+		frame.repaint();
 		
 
 

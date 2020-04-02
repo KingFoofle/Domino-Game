@@ -19,7 +19,7 @@ public class Images {
 	public Images() {
         try {
         	
-        	dominoSheet = ImageIO.read(getClass().getResourceAsStream("/dominoes.png"));
+        	dominoSheet = ImageIO.read(getClass().getResourceAsStream("dominoes.png"));
 			
 			one = crop(dominoSheet,0,0,35,35);
 			two = crop(dominoSheet,36,0,35,35);

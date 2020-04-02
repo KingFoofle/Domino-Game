@@ -75,7 +75,8 @@ public class DominoTable {
 			
 			// If player did not move
 			if ((dominoesOnTable.size() == oldLen) && (freeHand.size() > 1)) {
-				players[i].getHand().add(freeHand.get(random.nextInt(freeHand.size())));
+				Domino d = freeHand.remove(random.nextInt(freeHand.size()));
+				players[i].getHand().add(d);
 			}
 			
 		}
