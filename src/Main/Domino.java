@@ -11,6 +11,7 @@ import java.util.Objects;
 public class Domino {
 	
 	// Secret Password: Im learning Java and Python!
+	// Password #2: Nice job! :) Try the exercises when you can!
 
 	
 	// Instance Variables!
